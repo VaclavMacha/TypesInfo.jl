@@ -28,7 +28,7 @@ function _summary_concrete(::Type{T}) where {T <: Any}
 
     fields = fieldnames(T)
     if !isempty(fields)
-        println("  - fields: ", join(fiels, ", "))
+        println("  - fields: ", join(fields, ", "))
     end
     return
 end
