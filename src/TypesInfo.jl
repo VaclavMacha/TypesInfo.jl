@@ -7,27 +7,30 @@ export type_summary, supertypes_tree, subtypes_tree
 type_summary(::T) where T = type_summary(T)
 
 function type_summary(::Type{T}) where {T <: Any}
-    str = isabstracttype(T) ? _summary_abstract(T) : _summary_concrete(T)
-    print(str)
+    if isabstracttype(T)
+        _summary_abstract(T)
+    else
+        _summary_concrete(T)
+    end
     return
 end
 
 function _summary_abstract(::Type{T}) where {T <: Any}
-    str = """
-          $(T):
-              - supertype: $(supertype(T))
-              - subtypes: $(join(subtypes(T), ", "))
-          """
-    return str
+    println(T)
+    println("  - supertypes: ", join(supertypes(T), " <: "))
+    println("  - subtypes: ", join(subtypes(T), ", "))
+    return
 end
 
 function _summary_concrete(::Type{T}) where {T <: Any}
-    str = """
-          $(T):
-              - supertype: $(supertype(T))
-              - fields: $(join(fieldnames(T), ", "))
-          """
-    return str
+    println(T)
+    println("  - supertypes: ", join(supertypes(T), " <: "))
+
+    fields = fieldnames(T)
+    if !isempty(fields)
+        println("  - fields: ", join(fiels, ", "))
+    end
+    return
 end
 
 supertypes_tree(::T, k::Int = 0) where T = supertypes_tree(T, k)
