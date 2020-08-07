@@ -13,9 +13,9 @@ type_summary(Integer)
 ```
 
 ```
-Integer:
-    - supertype: Real
-    - subtypes: Bool, Signed, Unsigned
+Integer
+  - supertypes: Integer <: Real <: Number <: Any
+  - subtypes: Bool, Signed, Unsigned
 
 ```
 
@@ -24,9 +24,8 @@ type_summary(Int64)
 ```
 
 ```
-Int64:
-    - supertype: Signed
-    - fields: 
+Int64
+  - supertypes: Int64 <: Signed <: Integer <: Real <: Number <: Any
 
 ```
 
@@ -35,9 +34,8 @@ type_summary(1)
 ```
 
 ```
-Int64:
-    - supertype: Signed
-    - fields: 
+Int64
+  - supertypes: Int64 <: Signed <: Integer <: Real <: Number <: Any
 
 ```
 
@@ -46,9 +44,9 @@ type_summary(1//2)
 ```
 
 ```
-Rational{Int64}:
-    - supertype: Real
-    - fields: num, den
+Rational{Int64}
+  - supertypes: Rational{Int64} <: Real <: Number <: Any
+  - fields: num, den
 
 ```
 
@@ -131,6 +129,10 @@ Number
          Float64
       AbstractIrrational
          Irrational
+      FixedPointNumbers.FixedPoint
+         FixedPointNumbers.Fixed
+         FixedPointNumbers.Normed
+      ForwardDiff.Dual
       Integer
          Bool
          Signed
@@ -147,6 +149,9 @@ Number
             UInt64
             UInt8
       Rational
+      StatsBase.TestStat
+   SLEEFPirates.Double
+   VectorizationBase.Static
 
 ```
 
